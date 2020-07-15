@@ -46,3 +46,31 @@ def get_loader(data_path, x_key, y_key, batch_size, mode='train'):
                              shuffle=shuffle)
 
     return data_loader
+
+def load_dataset_train():
+    data_path = './train/'
+    train_dataset = torchvision.datasets.ImageFolder(
+        root=data_path,
+        transform=torchvision.transforms.ToTensor()
+    )
+    train_loader = torch.utils.data.DataLoader(
+        train_dataset,
+        batch_size=BATCH_SIZE,
+        num_workers=NUM_WORKERS,
+        shuffle=True
+    )
+    return train_loader
+
+def load_dataset_test():
+    data_path = './validation/'
+    test_dataset = torchvision.datasets.ImageFolder(
+        root=data_path,
+        transform=torchvision.transforms.ToTensor()
+    )
+    test_loader = torch.utils.data.DataLoader(
+        test_dataset,
+        batch_size=BATCH_SIZE,
+        num_workers=NUM_WORKERS,
+        shuffle=True
+    )
+    return test_loader
